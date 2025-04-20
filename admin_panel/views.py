@@ -2,12 +2,22 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from books.models import Book
 from orders.models import Order
 
 class AdminRequiredMixin(UserPassesTestMixin):
     def test_func(self):
         return self.request.user.is_authenticated and self.request.user.is_staff
+    
+    def handle_no_permission(self):
+        if self.request.user.is_authenticated:
+            # User is logged in but not staff, redirect to books list
+            return HttpResponseRedirect(reverse('books:book_list'))
+        else:
+            # User is not logged in, redirect to login with next parameter
+            return HttpResponseRedirect(f"{reverse('accounts:login')}?next={self.request.path}")
 
 class AdminDashboardView(AdminRequiredMixin, View):
     template_name = 'admin_panel/dashboard.html'

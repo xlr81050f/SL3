@@ -48,6 +48,8 @@ class LoginView(View):
     
     def get(self, request):
         if request.user.is_authenticated:
+            if request.user.is_staff and 'admin_panel' in request.GET.get('next', ''):
+                return redirect(reverse('admin_panel:dashboard'))
             return redirect(reverse('books:book_list'))
         return render(request, self.template_name)
     
@@ -69,8 +71,18 @@ class LoginView(View):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            next_url = request.GET.get('next', reverse('books:book_list'))
-            return redirect(next_url)
+            next_url = request.GET.get('next', '')
+            
+            # Check if user is staff and trying to access admin panel
+            if 'admin_panel' in next_url:
+                if user.is_staff:
+                    return redirect(next_url)
+                else:
+                    # Non-staff user trying to access admin panel, redirect to books
+                    return redirect(reverse('books:book_list'))
+            
+            # Default redirect
+            return redirect(next_url if next_url else reverse('books:book_list'))
         else:
             errors['auth'] = 'Invalid username or password'
             return render(request, self.template_name, {'errors': errors})
