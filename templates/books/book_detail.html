@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% block title %}{{ book.title }} | Bookstore{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-4">
+        {% if book.cover_image %}
+            <img src="{{ book.cover_image }}" class="img-fluid rounded" alt="{{ book.title }}">
+        {% else %}
+            <img src="https://via.placeholder.com/400x600?text=No+Image" class="img-fluid rounded" alt="No Image">
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+        <h1>{{ book.title }}</h1>
+        <h4 class="text-muted">by {{ book.author }}</h4>
+        <hr>
+        <p class="lead">${{ book.price }}</p>
+        <p>{{ book.description }}</p>
+        
+        {% if book.is_in_stock %}
+            <p class="text-success">In Stock ({{ book.inventory }} available)</p>
+            <form method="post">
+                {% csrf_token %}
+                <button type="submit" name="add_to_cart" class="btn btn-primary">Add to Cart</button>
+            </form>
+        {% else %}
+            <p class="text-danger">Out of Stock</p>
+            <button class="btn btn-secondary" disabled>Add to Cart</button>
+        {% endif %}
+        
+        <a href="{% url 'books:book_list' %}" class="btn btn-outline-secondary mt-3">Back to Books</a>
+    </div>
+</div>
+{% endblock %}

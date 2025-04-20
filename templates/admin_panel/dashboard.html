@@ -1,0 +1,91 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Admin Dashboard | Bookstore{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Admin Dashboard</h1>
+
+<div class="row">
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Quick Stats</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="text-center">
+                            <h3>{{ total_books }}</h3>
+                            <p class="text-muted">Total Books</p>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="text-center">
+                            <h3>{{ total_orders }}</h3>
+                            <p class="text-muted">Total Orders</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{% url 'admin_panel:book_create' %}" class="btn btn-primary">Add New Book</a>
+                    <a href="{% url 'admin_panel:book_list' %}" class="btn btn-outline-secondary">Manage Books</a>
+                    <a href="{% url 'admin_panel:order_list' %}" class="btn btn-outline-secondary">View Orders</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">Recent Orders</h5>
+    </div>
+    <div class="card-body">
+        {% if recent_orders %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Date</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for order in recent_orders %}
+                        <tr>
+                            <td>#{{ order.id }}</td>
+                            <td>{{ order.user.username }}</td>
+                            <td>{{ order.created_at|date:"F j, Y" }}</td>
+                            <td>${{ order.total_price }}</td>
+                            <td><span class="badge bg-{% if order.status == 'paid' %}success{% elif order.status == 'pending' %}warning{% elif order.status == 'cancelled' %}danger{% else %}info{% endif %}">{{ order.status|title }}</span></td>
+                            <td>
+                                <a href="{% url 'admin_panel:order_detail' order.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="text-end">
+                <a href="{% url 'admin_panel:order_list' %}" class="btn btn-sm btn-outline-secondary">View All Orders</a>
+            </div>
+        {% else %}
+            <div class="alert alert-info">No recent orders.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

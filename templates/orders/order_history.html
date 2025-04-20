@@ -1,0 +1,68 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Order History | Bookstore{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Order History</h1>
+
+{% if orders %}
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Items</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>#{{ order.id }}</td>
+                    <td>{{ order.created_at|date:"F j, Y" }}</td>
+                    <td>${{ order.total_price }}</td>
+                    <td><span class="badge bg-{% if order.status == 'paid' %}success{% elif order.status == 'pending' %}warning{% elif order.status == 'cancelled' %}danger{% else %}info{% endif %}">{{ order.status|title }}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-primary" type="button" data-bs-toggle="collapse" data-bs-target="#order-{{ order.id }}" aria-expanded="false">
+                            View Items
+                        </button>
+                    </td>
+                </tr>
+                <tr class="collapse" id="order-{{ order.id }}">
+                    <td colspan="5">
+                        <div class="card card-body">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Book</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.items.all %}
+                                    <tr>
+                                        <td>{{ item.book.title }}</td>
+                                        <td>${{ item.price }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>${{ item.get_total_price }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        You haven't placed any orders yet. <a href="{% url 'books:book_list' %}">Start shopping</a>.
+    </div>
+{% endif %}
+{% endblock %}
