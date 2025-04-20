@@ -50,6 +50,8 @@ DevOps: Docker, Docker Compose, Jenkins
 1. ![WhatsApp Image 2025-04-20 at 23 18 21_f4b2e8cd](https://github.com/user-attachments/assets/00624b98-1e96-4642-8212-2032843c79b2)
 2. ![WhatsApp Image 2025-04-20 at 23 20 54_f92c6916](https://github.com/user-attachments/assets/7558be2c-8781-4ca2-93d7-36e780e85ed8)
 3. ![WhatsApp Image 2025-04-20 at 23 21 02_82068fa9](https://github.com/user-attachments/assets/cb150eed-2468-4d22-9f6a-6aa443befe64)
+4. ![WhatsApp Image 2025-04-20 at 23 28 51_ce625ab3](https://github.com/user-attachments/assets/5cf0214f-7f8e-492c-9e65-6c9f96486d89)
+
 
 ### 🐳 Docker Notes
 Dockerfile: builds the Django web app
