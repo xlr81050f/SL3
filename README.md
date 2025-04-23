@@ -56,12 +56,13 @@ DevOps: Docker, Docker Compose, Jenkins
 
 
 ### 🐳 Docker Notes
-Dockerfile: builds the Django we![Uploading Screenshot 2025-04-23 150452.png…]()
-b app
+Dockerfile: builds the Django we!
 
+![435487874-5cf0214f-7f8e-492c-9e65-6c9f96486d89](https://github.com/user-attachments/assets/d9ceb837-abc2-4857-950c-9dc8a66cfd12)
 docker-compose.yml: defines the web service and database
 
 Uses volume mounts for live code reloads
+
 
 Accessible at: http://localhost:8000
 
