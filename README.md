@@ -1,4 +1,4 @@
-# 📚 Django Bookstore Project
+#  Django Bookstore Project
 
 A full-stack Django application like Amazon but only for books, specifically for managing and ordering books. It includes full user authentication, a session-based cart, custom admin panel, and DevOps integration with Docker and Jenkins.
 
@@ -47,14 +47,17 @@ Database: SQLite (can be swapped with PostgreSQL)
 DevOps: Docker, Docker Compose, Jenkins
 
 ### 📸 Screenshots
-1. ![WhatsApp Image 2025-04-20 at 23 18 21_f4b2e8cd](https://github.com/user-attachments/assets/00624b98-1e96-4642-8212-2032843c79b2)
-2. ![WhatsApp Image 2025-04-20 at 23 20 54_f92c6916](https://github.com/user-attachments/assets/7558be2c-8781-4ca2-93d7-36e780e85ed8)
-3. ![WhatsApp Image 2025-04-20 at 23 21 02_82068fa9](https://github.com/user-attachments/assets/cb150eed-2468-4d22-9f6a-6aa443befe64)
-4. ![WhatsApp Image 2025-04-20 at 23 28 51_ce625ab3](https://github.com/user-attachments/assets/5cf0214f-7f8e-492c-9e65-6c9f96486d89)
+![Screenshot 2025-04-23 150458](https://github.com/user-attachments/assets/e45ea261-c425-4342-8922-b11105377fb8)
+![Screenshot 2025-04-23 150452](https://github.com/user-attachments/assets/f82c02d7-03e9-4c9f-beef-0efe1d17cc4a)
+![Screenshot 2025-04-23 150445](https://github.com/user-attachments/assets/79bb0089-bef7-4cdf-9fa2-485a213c56ae)
+![Screenshot 2025-04-23 150400](https://github.com/user-attachments/assets/8fa23a06-ce66-4440-bce5-49c83ddd0d39)
+![Screenshot 2025-04-23 150353](https://github.com/user-attachments/assets/d1511aad-aa7c-4d92-b535-72d2216c29b3)
+![Screenshot 2025-04-23 150346](https://github.com/user-attachments/assets/d985d4bc-8f57-431e-bab6-26e7b9637df4)
 
 
 ### 🐳 Docker Notes
-Dockerfile: builds the Django web app
+Dockerfile: builds the Django we![Uploading Screenshot 2025-04-23 150452.png…]()
+b app
 
 docker-compose.yml: defines the web service and database
 
