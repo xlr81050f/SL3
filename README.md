@@ -1,10 +1,7 @@
-#  Django Bookstore Project
+# Bookstore Project
 
-A full-stack Django application like Amazon but only for books, specifically for managing and ordering books. It includes full user authentication, a session-based cart, custom admin panel, and DevOps integration with Docker and Jenkins.
 
----
-
-## 🚀 Project Overview
+##Overview
 
 This project allows users to:
 
@@ -15,28 +12,6 @@ This project allows users to:
 - Track order history
 - Admin users can manage books and orders via a custom admin panel (no Django Admin used)
 
-All functionalities are built using **Class-Based Views (CBVs)** and **manual HTML forms** — no Django forms or function-based views (FBVs).
-
----
-
-## ⚙️ Setup & Run Instructions
-
-### ✅ Prerequisites
-- Docker Desktop installed
-- Git installed
-
-### 📦 Clone the Project
-
-```bash
-git clone <your-repo-url>
-cd bookstore_project
-🐳 Run with Docker Compose
-- docker compose up --build
-The app will be available at: http://localhost:8000
-
-🧑‍💻 Create Admin User
-- docker compose exec web python manage.py shell < init_admin.py
-``` 
 ### 🧰 Tech Stack
 Backend: Django (Python)
 
@@ -77,21 +52,4 @@ Deploys the container
 
 You can connect Jenkins to your GitHub repo and set up automatic builds on push.
 
-### 📂 Folder Structure
-```
-bookstore_project/
-├── books/
-├── accounts/
-├── cart/
-├── orders/
-├── admin_panel/
-├── templates/
-├── static/
-├── Dockerfile
-├── docker-compose.yml
-├── Jenkinsfile
-├── init_admin.py
-└── manage.py
-```
-### 📜 License
-This project is for educational use only.
+
